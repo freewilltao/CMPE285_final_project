@@ -1,5 +1,6 @@
 # CMPE285_final_project
-Stock Portfolio Suggestion Engine
+
+## Stock Portfolio Suggestion Engine
 To run the application, please follow the is steps below:
 1. sudo pip install -U pip setuptools
 2. pip install virtualenv
