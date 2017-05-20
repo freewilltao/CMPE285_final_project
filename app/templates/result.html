@@ -91,7 +91,7 @@
                         <td>{{ details[detail].holding_value }}</td>
                         <td>{{ details[detail].stock_exchange }}</td>
                     </tr>
-					
+
                 {% endfor %}
 				</table>
 			<table class="table" id="histable" align="center">
@@ -111,7 +111,7 @@
 <table>
 	<tr>
 		<td>
-			<div id="piechart" style="width: 500px; height: 500px;"></div>	
+			<div id="piechart" style="width: 500px; height: 500px;"></div>
 		</td>
 		<td>
 			<div id="curve_chart" style="width: 800px; height: 400px;"></div>
@@ -165,7 +165,7 @@
     var history_tr = document.getElementById('histable').rows;
     var lineDatas = [];
     lineDatas.push(['Date', 'Amount']);
-    for (var i = 0; i < history_tr.length; i++) {
+    for (var i = 1; i < history_tr.length; i++) {
         var lineData = [];
         td = history_tr[i].cells;
         lineData.push(td[0].innerHTML);
