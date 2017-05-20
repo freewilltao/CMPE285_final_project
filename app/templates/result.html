@@ -1,7 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,12 +17,16 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='js/bootstrap.js') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='js/npm.js') }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
     <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.3.min.js"></script>
     <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.3.min.css">
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
@@ -41,123 +44,140 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
     <![endif]-->
-      <style>
-          html, body {
+    <style>
+        html, body {
             width: 100%;
         }
+
         table {
             margin: 0 auto;
         }
-      </style>
-  </head>
+    </style>
+</head>
 
-  <body>
+<body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-          </button>
-          <a class="navbar-brand" href="#">Stock Porfolio Suggestion</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="#">Stock Porfolio Suggestion</a>
         </div>
-      </div>
-    </nav>
-  <hr class="featurette-divider">
+    </div>
+</nav>
+<hr class="featurette-divider">
 
-      <div class="row">
-        <div class="col-md-7" style="padding-top: 25px">
-            <div class="content">
-                <table class="table" id="stockTable" align="center">
+<div class="row">
+    <div class="col-md-7" style="padding-top: 25px">
+        <div class="content">
+            <table class="table" id="stockTable" align="center">
+                <tr>
+                    <th>ABBR</th>
+                    <th>Company</th>
+                    <th>Latest Price</th>
+                    <th>Holding Ratio</th>
+                    <th>Holding Value</th>
+                    <th>Exchange</th>
+                </tr>
+                {% for detail in details %}
                     <tr>
-                        <th>ABBR</th>
-                        <th>Company</th>
-                        <th>Latest Price</th>
-                        <th>Holding Ratio</th>
-                        <th>Holding Value</th>
-                        <th>Exchange</th>
+                        <td>{{ details[detail].stock_short }}</td>
+                        <td>{{ details[detail].stock_company_name }}</td>
+                        <td>{{ details[detail].stock_latest_price }}</td>
+                        <td>{{ details[detail].holding_ratio }}</td>
+                        <td>{{ details[detail].holding_value }}</td>
+                        <td>{{ details[detail].stock_exchange }}</td>
                     </tr>
-                    {% for detail in details %}
-                        <tr>
-                            <td>{{ details[detail].stock_short }}</td>
-                            <td>{{ details[detail].stock_company_name }}</td>
-                            <td>{{ details[detail].stock_latest_price }}</td>
-                            <td>{{ details[detail].holding_ratio }}</td>
-                            <td>{{ details[detail].holding_value }}</td>
-                            <td>{{ details[detail].stock_exchange }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
+					
+                {% endfor %}
+				</table>
+			<table class="table" id="histable" align="center">
+				{% for his in history %}
+                <tr style="display:none">
+                    <td>{{ his.date }}</td>
+					<td>{{ his.value }}</td>
+                </tr>
+				{% endfor %}
+            </table>
         </div>
-      </div>
-    <input type="hidden" id="resultData" value="{{ details }}">
-    <hr class="featurette-divider">
+    </div>
+</div>
+<input type="hidden" id="resultData" value="{{ details }}">
+<input type="hidden" id="historyData" value="{{ history }}">
+<hr class="featurette-divider">
 
-    <div id="piechart" style="width: 500px; height: 500px;"></div>
-    
-      <!-- /END THE FEATURETTES -->
-  </body>
-  {#pie char for lijun#}
+<div id="piechart" style="width: 500px; height: 500px;"></div>
+<div id="curve_chart" style="width: 800px; height: 400px;"></div>
+<!-- /END THE FEATURETTES -->
+</body>
+{#pie char for lijun#}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+<script type="text/javascript">
+    google.charts.load('current', {'packages': ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
-      var tr = document.getElementById('stockTable').rows;
-      var pieDatas = [];
-      var header = tr[0].cells;
-      var headers = [];
-      headers.push(header[1].innerHTML);
-      headers.push(header[3].innerHTML);
-      pieDatas.push(headers);
-      for (var i = 1; i < tr.length; i++) {
-          var pieData = [];
-          td = tr[i].cells;
-          pieData.push(td[1].innerHTML);
-          var num = parseFloat(td[3].innerHTML)*100;
-          num = Math.round(num);
-          pieData.push(num);
-          pieDatas.push(pieData);
-          console.log(pieData);
-      }
+    var tr = document.getElementById('stockTable').rows;
+    var pieDatas = [];
+    var header = tr[0].cells;
+    var headers = [];
+    headers.push(header[1].innerHTML);
+    headers.push(header[3].innerHTML);
+    pieDatas.push(headers);
+    for (var i = 1; i < tr.length; i++) {
+        var pieData = [];
+        td = tr[i].cells;
+        pieData.push(td[1].innerHTML);
+        var num = parseFloat(td[3].innerHTML) * 100;
+        num = Math.round(num);
+        pieData.push(num);
+        pieDatas.push(pieData);
+        console.log(pieData);
+    }
 
-      function drawChart() {
-          console.log(pieDatas);
+    function drawChart() {
+        console.log(pieDatas);
 
         var data = google.visualization.arrayToDataTable(pieDatas);
 
         var options = {
-          title: 'Portfolio Holding Ratio'
+            title: 'Portfolio Holding Ratio'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
+    }
+
+    {#    //trend chart for chenxue#}
+    google.charts.load('current', {'packages': ['corechart']});
+    google.charts.setOnLoadCallback(drawLine);
+
+    var history_tr = document.getElementById('histable').rows;
+    var lineDatas = [];
+    lineDatas.push(['Date', 'Amount']);
+    for (var i = 0; i < history_tr.length; i++) {
+        var lineData = [];
+        td = history_tr[i].cells;
+        lineData.push(td[0].innerHTML);
+        var num = parseFloat(td[1].innerHTML);
+        lineData.push(num);
+        lineDatas.push(lineData);
+        console.log(lineData);
+    }
+    function drawLine() {
+         var data = google.visualization.arrayToDataTable(lineDatas);
+
+        var options = {
+          title: 'History',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
       }
-
-      {#    //trend chart for chenxue#}
-      google.charts.load('current', {'packages':['table']});
-      google.charts.setOnLoadCallback(drawTable);
-
-      function drawTable() {
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Abbr');
-        data.addColumn('String', 'Ticker');
-        data.addColumn('String', 'P/E')
-
-
-        data.addColumn('number', 'Salary');
-        data.addColumn('boolean', 'Full Time Employee');
-        data.addRows([
-          ['Mike',  {v: 10000, f: '$10,000'}, true],
-          ['Jim',   {v:8000,   f: '$8,000'},  false],
-          ['Alice', {v: 12500, f: '$12,500'}, true],
-          ['Bob',   {v: 7000,  f: '$7,000'},  true]
-        ]);
-
-        var table = new google.visualization.Table(document.getElementById('table_div'));
-
-        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
-      }
-    </script>
+</script>

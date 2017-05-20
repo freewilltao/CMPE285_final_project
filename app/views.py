@@ -1,4 +1,4 @@
-from app.PickStrategies import get_stock_list_all, get_strategy_stock_info
+from app.PickStrategies import get_stock_list_all, get_strategy_stock_info, get_historical_strategy_stock_value
 from flask import render_template, flash, redirect, request
 from app import app
 from .forms import InvestForm
@@ -19,8 +19,13 @@ def invest():
             print(choices)
             stocklist = get_stock_list_all(choices)
             details = get_strategy_stock_info(stocklist, amount)
-            print(details)
-            return render_template("result.html", details=details, data=map(json.dumps, details))
+            print(stocklist);
+            print('1234')
+            history = get_historical_strategy_stock_value(stocklist, amount);
+            print(history);
+            return render_template("result.html", details=details, history=history)
+            #return render_template("result.html", details=details, data=map(json.dumps, details))
+
         except:
             return render_template('error.html')
 
