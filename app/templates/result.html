@@ -62,14 +62,19 @@
                     aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
             </button>
-            <a class="navbar-brand" href="#">Stock Porfolio Suggestion</a>
+            <a class="navbar-brand" href="#">Stock Porfolio Suggestion Engine</a>
         </div>
     </div>
 </nav>
-<hr class="featurette-divider">
-
+{#<hr class="featurette-divider">#}
+<hr>
+<hr>
+<hr>
 <div class="container">
     <div class="row justify-content-md-center">
+    <div>
+        <h4 style="text-align: center">Overall Portfolio (including all the stocks / ETFs)</h4>
+    </div>
         <div class="col-12 col-md-auto">
             <table class="table table-striped" id="stockTable" align="center">
                 <tr>
@@ -105,13 +110,12 @@
 </div>
 <input type="hidden" id="resultData" value="{{ details }}">
 <input type="hidden" id="historyData" value="{{ history }}">
-<hr class="featurette-divider">
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div id="piechart" style="width: 500px; height: 500px;"></div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div id="curve_chart" style="width: 800px; height: 400px;"></div>
         </div>
     </div>
@@ -167,7 +171,7 @@
     function drawLine() {
          var data = google.visualization.arrayToDataTable(lineDatas);
         var options = {
-          title: 'History',
+          title: 'Weekly Trend of Portfolio Value',
           curveType: 'function',
           legend: { position: 'bottom' }
         };
