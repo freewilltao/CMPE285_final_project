@@ -8,20 +8,19 @@ import json
 import numpy as np, numpy.random
 
 
-
-
 # get history_stock_info for stock_name
 
 def get_historical_info_pandas(stock_short):
     date_time_current = datetime.datetime.now().date()
     # get the date of 7 days ago
-    date_gap = datetime.timedelta(days=7)
+    date_gap = datetime.timedelta(days=30)
     date_time_sevendays_ago = date_time_current - date_gap
     # history for 7 days
     stock_history_frame = pdr.DataReader(stock_short,'google',str(date_time_sevendays_ago),str(date_time_current))
     df=pd.DataFrame(stock_history_frame)
     close_df=df.get('Close')
-    tk=close_df.index.tolist()
+    tk=close_df.index.tolist()[-5:]
+
     close_price_dic=close_df.to_dict()
     stock_history = [(ts.strftime("%Y-%m-%d"), close_price_dic[ts]) for ts in tk]
     return stock_history
@@ -97,8 +96,8 @@ def get_strategy_stock_info(stock_list,investment):
     for stock_short in stock_list:
         stock_current_info=get_current_stock_info(stock_short)
         holding_ratio=stock_list[stock_short]
-        stock_current_info['holding_ratio']=holding_ratio
-        stock_current_info['holding_value'] = holding_ratio*investment
+        stock_current_info['holding_ratio']=float("{0:.4f}".format(holding_ratio))
+        stock_current_info['holding_value'] = float("{0:.2f}".format(holding_ratio*investment))
         stock_strategy_invest_info[stock_short]=stock_current_info
     return stock_strategy_invest_info
 
@@ -134,14 +133,14 @@ def get_historical_strategy_stock_value(stock_list,investment):
             ordered_date = [itm[0] for itm in historical_info]
         holding_ratio = stock_list[stock_short]
         point_price=historical_info[0][1]
-        for i in range(1,6):
+        for i in xrange(5):
             stock_historical_values[historical_info[i][0]]+= historical_info[i][1]/point_price*investment*holding_ratio
     result = []
     for date in ordered_date:
         dict_json = {}
-        dict_json['date'] = date;
-        dict_json['value'] = stock_historical_values[date]
+        dict_json['date'] = date
+        dict_json['value'] = float("{0:.4f}".format(stock_historical_values[date]))
         result.append(dict_json)
     #json_str = json.dumps(dict_json)
-
+    print(len(result))
     return result

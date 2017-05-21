@@ -133,7 +133,7 @@
     headers.push(header[1].innerHTML);
     headers.push(header[3].innerHTML);
     pieDatas.push(headers);
-    for (var i = 1; i < tr.length; i++) {
+    for (var i = 0; i < tr.length; i++) {
         var pieData = [];
         td = tr[i].cells;
         pieData.push(td[1].innerHTML);
@@ -165,7 +165,7 @@
     var history_tr = document.getElementById('histable').rows;
     var lineDatas = [];
     lineDatas.push(['Date', 'Amount']);
-    for (var i = 1; i < history_tr.length; i++) {
+    for (var i = 0; i < history_tr.length; i++) {
         var lineData = [];
         td = history_tr[i].cells;
         lineData.push(td[0].innerHTML);

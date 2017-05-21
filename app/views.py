@@ -13,6 +13,7 @@ def invest():
             form = InvestForm(request.form)
             amount = float(request.form['amount'])
             if amount < 5000:
+                print('fucccccccccccccc')
                 return render_template('error.html')
             print(amount)
             choices = request.form.getlist('strategies')
@@ -21,7 +22,7 @@ def invest():
             details = get_strategy_stock_info(stocklist, amount)
             print(stocklist);
             print('1234')
-            history = get_historical_strategy_stock_value(stocklist, amount);
+            history = get_historical_strategy_stock_value(stocklist, amount)
             print(history);
             return render_template("result.html", details=details, history=history)
             #return render_template("result.html", details=details, data=map(json.dumps, details))
