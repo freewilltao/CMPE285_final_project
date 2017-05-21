@@ -68,10 +68,10 @@
 </nav>
 <hr class="featurette-divider">
 
-<div class="row">
-    <div class="col-md-7" style="padding-top: 25px">
-        <div class="content">
-            <table class="table" id="stockTable" align="center">
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-auto">
+            <table class="table table-striped" id="stockTable" align="center">
                 <tr>
                     <th>ABBR</th>
                     <th>Company</th>
@@ -91,7 +91,7 @@
                     </tr>
 
                 {% endfor %}
-				</table>
+            </table>
 			<table class="table" id="histable" align="center">
 				{% for his in history %}
                 <tr style="display:none">
@@ -106,16 +106,16 @@
 <input type="hidden" id="resultData" value="{{ details }}">
 <input type="hidden" id="historyData" value="{{ history }}">
 <hr class="featurette-divider">
-<table>
-	<tr>
-		<td>
-			<div id="piechart" style="width: 500px; height: 500px;"></div>
-		</td>
-		<td>
-			<div id="curve_chart" style="width: 800px; height: 400px;"></div>
-		</td>
-	</tr>
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="piechart" style="width: 500px; height: 500px;"></div>
+        </div>
+        <div class="col-md-6">
+            <div id="curve_chart" style="width: 800px; height: 400px;"></div>
+        </div>
+    </div>
+</div>
 <!-- /END THE FEATURETTES -->
 </body>
 {#pie char for lijun#}
