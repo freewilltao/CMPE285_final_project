@@ -17,6 +17,8 @@ def invest():
                 return render_template('error.html')
             print(amount)
             choices = request.form.getlist('strategies')
+            if len(choices)<=0 or len(choices)>2:
+                return render_template('error.html')
             print(choices)
             stocklist = get_stock_list_all(choices)
             details = get_strategy_stock_info(stocklist, amount)

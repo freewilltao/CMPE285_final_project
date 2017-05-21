@@ -139,7 +139,7 @@ def get_historical_strategy_stock_value(stock_list,investment):
     for date in ordered_date:
         dict_json = {}
         dict_json['date'] = date
-        dict_json['value'] = float("{0:.4f}".format(stock_historical_values[date]))
+        dict_json['value'] = float("{0:.2f}".format(stock_historical_values[date]))
         result.append(dict_json)
     #json_str = json.dumps(dict_json)
     print(len(result))
